@@ -1,0 +1,80 @@
+{
+  "name": "Deledao Education",
+  "version": "2024.7.17.1",
+  "manifest_version": 2,
+  "description": "Deledao protects students and their privacy online in real time.",
+  "update_url": "https://cc.deledao.com/GetUpdates",
+
+  "icons": { "16": "icons/16.png",
+             "48": "icons/48.png",
+             "128": "icons/128.png" },
+
+  "permissions": [
+    "alarms",
+    "tabs",
+    "activeTab",
+    "cookies",
+    "storage",
+    "downloads",
+    "privacy",
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "idle",
+    "browsingData",
+    "system.cpu",
+    "identity",
+    "identity.email",
+    "nativeMessaging",
+    "notifications",
+    "contextMenus",
+    "geolocation",
+    "enterprise.deviceAttributes",
+    "<all_urls>",
+    "*://*/*"
+  ],
+
+  "background": {
+    "scripts": [ "backlibs.js", "core.min.js", "bInit.js" ], 
+    "persistent": true
+  },
+
+  "browser_action": {
+    "default_icon": "icons/128.png"
+  },
+
+  "web_accessible_resources": [
+    "frontend/ytScript.js"
+  ],
+
+  "oauth2": {
+    "client_id": "775655569459-rf957jtgdl0u86dhla0klkn6mmn580d0.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "matches": [ "*://*/*" ],
+      "match_about_blank": true,
+      "js": [ "core.min.js", "fInit.js" ],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ],
+
+  "externally_connectable": {
+    "matches": [
+      "https://*.deledao.com/*", 
+      "https://*.dev.deledao.com/*"
+    ],
+    "ids": ["jbiooalnpjmfldodiaclikfcebmekfmh",   // Local test ext.
+            "hmfjajhcddnpmhkhakkgoibealjcffho",   // Hapara dev ext.
+            "kbohafcopfpigkjdimdcdgenlhkmhbnc",   // Hapara prod ext.
+            "aceopacgaepdcelohobicpffbbejnfac"    // 20221215: Hapara new ext id.
+            ]
+  },
+  
+  "incognito": "spanning"
+}

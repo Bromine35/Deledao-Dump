@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Deledao</title>
+  <!-- This is only loaded in obfuscated extension builds. It's safe
+       to ignore error in loading this in other builds. -->
+  <script src="/core.min.js"></script>
+
+  <!-- This is only loaded when extension is loaded unpacked from
+       source. It's safe to ignore error in loading this in other builds.
+    -->
+  <script src="/util/vendor.js"></script>
+  <script src="/util/constants.js"></script>
+
+  <!-- This will be the real unobfuscated script when the extension is
+       loaded unpacked during dev. In obfuscated extension builds, it will
+       be the stub script. It's safe to ignore loading error in other
+       builds. -->
+  <script src="../compat/platform.js"></script>
+  <script src="../compat/ext/platform.js"></script>
+  <!-- This is the debug/popup.js -->
+  <script src="popup.js"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1px;
+    }
+
+    .button {
+      background-color: #FADE81;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body style="width:300px;margin:0px;border-top:4.5px solid #FADE81;">
+
+  <div style="background-color:rgba(72,157,252,1);">
+    <div id="prodArea"
+      style="color:white;width:300px;margin-left:15px;margin-right:15px;padding-top:10px;padding-bottom:10px;line-height:1.5;">
+      <p id="setuppending" style="display:none">Setting up ...</p>
+
+      <div id="cust" style="display:table-row;">
+        <div style="width:85px;display:table-cell;">
+          <b d-trans-en="Customer: " d-trans-zh-TW="客戶： ">
+            Customer: 
+          </b>
+        </div>
+        <div id="custName" style="display:table-cell;overflow-wrap:anywhere;"></div>
+      </div>
+
+      <div id="user" style="display:table-row;">
+        <div style="width:85px;display:table-cell;">
+          <b d-trans-en="User: " d-trans-zh-TW="用戶： ">
+            User: 
+          </b>
+        </div>
+        <div id="userName" style="display:table-cell;overflow-wrap:anywhere;"></div>
+      </div>
+
+      <div id="brmode" style="display:none">
+        <div style="width:85px;display:table-cell;"><b>Plan: </b></div>
+        <div id="homeMode" style="display:table-cell;overflow-wrap:anywhere;">Anonymous</div>
+      </div>
+
+      <div id="userOuDiv" style="display:table-row;">
+        <div style="width:85px;display:table-cell;">
+          <b d-trans-en="OU: " d-trans-zh-TW="組織單位: ">
+            OU: 
+          </b>
+        </div>
+        <div id="ouName" style="display:table-cell;overflow-wrap:anywhere;"></div>
+      </div>
+
+      <div id="group" style="display:table-row;">
+        <div style="width:85px;display:table-cell;">
+          <b d-trans-en="Groups: " d-trans-zh-TW="群組: ">
+            Groups: 
+          </b>
+        </div>
+        <div id="groupName" style="display:table-cell;overflow-wrap:anywhere;"></div>
+      </div>
+
+      <div id="rule" style="display:table-row;">
+        <div style="width:85px;display:table-cell;">
+          <b d-trans-en="Rule: " d-trans-zh-TW="規則: ">
+            Rule: 
+          </b>
+        </div>
+        <div id="ruleName" style="display:table-cell;overflow-wrap:anywhere;"></div>
+      </div>
+
+      <div id="classroom" style="display:none;">
+        <div style="width:85px;display:table-cell;">
+          <b d-trans-en="Classroom: " d-trans-zh-TW="課堂: ">
+            Classroom: 
+          </b>
+        </div>
+        <div id="className" style="display:table-cell;overflow-wrap:anywhere;"></div>
+      </div>
+      <!-- 
+     <div id="session" style="display:none;">
+	 	<div style="width:85px;display:table-cell;"><b>Session: </b></div><div id="sessionName" style="display:table-cell;overflow-wrap:anywhere;"></div>
+     </div>
+-->
+      <div id="ip" style="display:none;">
+        <div style="width:85px;display:table-cell;">
+          <b d-trans-en="IP addr: " d-trans-zh-TW="IP位置: ">
+            IP addr: 
+          </b>
+        </div>
+        <div id="ipAddrs" style="display:table-cell;overflow-wrap:anywhere;"></div>
+        <br>
+      </div>
+      <div style="width:85px;display:table-cell;">
+        <b d-trans-en="Version: " d-trans-zh-TW="版本: ">
+          Version: 
+        </b>
+      </div>
+      <div id="version" style="display:table-cell;overflow-wrap:anywhere;"></div>
+
+      <div id="policyVer" style="display:none;">
+        <div style="width:85px;display:table-cell;">
+          <b d-trans-en="Policy ver: " d-trans-zh-TW="政策版本: ">
+            Policy ver: 
+          </b>
+        </div>
+        <div id="policyVersion" style="display:table-cell;overflow-wrap:anywhere;"></div>
+      </div>
+
+      <div id="video" style="display:none;">
+        <div style="width:85px;display:table-cell;"><b>Video: </b></div>
+        <div style="display:table-cell;overflow-wrap:anywhere;"><span id="dvaModel"></span>, <span id="dvaCloud"></span>
+        </div>
+      </div>
+
+      <div id="uuiddiv" style="display:none;">
+        <div style="width:85px;display:table-cell;"><b>UUID: </b></div>
+        <div id="uuid" style="display:table-cell;overflow-wrap:anywhere;"></div>
+      </div>
+
+      <div id="buttonArea" style="margin-top:8px;"> <!--  button area -->
+        <button id="raiseHandButton" class="button" style="display:none" d-trans-en="Raise hand" d-trans-zh-TW="舉手">
+          Raise hand</button>
+        <button id="sendMsgButton" class="button" style="display:none" d-trans-en="Message teacher" d-trans-zh-TW="傳訊給老師">
+          Message teacher</button>
+        <button id="refreshPolicyButton" class="button" d-trans-en="Refresh policy" d-trans-zh-TW="刷新政策">
+          Refresh policy
+        </button>
+        <button id="chgbrmode" class="button" style="display:none">Change plan</button>
+
+        <button id="homeUserLogout" class="button" style="display:none">Log me out</button>
+
+        <button id="supportCmdButton" class="button" d-support-cmd-status="enter"
+          d-trans-en="Enter support cmd" d-trans-zh-TW="輸入支援指令">
+          Enter support cmd
+        </button>
+        <button id="gendiagButton" class="button" style="display:none">Generate diag info</button>
+        <div id="supportCmdArea" class="button" style="display:none">
+          <textarea id="supportCmd" class="button" rows=5 cols=40></textarea>
+          <div id="statusBar">Ready</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span id="extDisabled"
+        style="display:none; color:white;width:290px;font-size: 15px;margin-left:25px;margin-right:20px;padding-top:30px;padding-bottom:30px;line-height:1.5;">Your
+        school subscription has expired<br>and filtering is turned off.</span>
+    </div>
+  </div>
+
+  <!-- dev area, hidden from production builds -->
+  <div style="background-color:#c2c2d6">
+    <div id="devArea" style="display:none;margin-left:15px;margin-right:15px;padding-top:10px;padding-bottom:10px;">
+      <center><b>Dev Area</b></center>
+      <div id="debugLogArea">
+        Turn on debug for:
+        <input type="text" id="debugModules" size=20>
+        <button id="debugButton">Set</button>
+        <br>
+
+        <input type="checkbox" id="logAtRestart">Log at restart
+        <button id="showLogsButton">Show logs</button>
+
+        <hr>
+        Dev server path (e.g. /dev):
+        <input type="text" id="serverPath" size=10><br>
+        Dev console path (e.g. /dev):
+        <input type="text" id="serverConsolePath" size=10>
+        <button id="serverPathButton">Set</button>
+
+        <hr>
+        <div id="webrtc">
+          RTC home: <span id="rtcStatus"></span>
+          <button id="rtcConnect">Connect</button>
+          <br>
+          RTC teacher: <span id="rtcTeacher">disconnected</span>
+        </div>
+
+        <div id="sensitivity">
+          <hr>
+          Text sensitivity:
+          <input type="radio" id="dcmTaLowRadio" name="textSensi" value="low">L
+          <input type="radio" id="dcmTaMedRadio" name="textSensi" value="medium" checked>M
+          <input type="radio" id="dcmTaHighRadio" name="textSensi" value="high">H
+          <br>
+          Image sensitivity:
+          <input type="radio" id="dcmIaLowRadio" name="imgSensi" value="low">L
+          <input type="radio" id="dcmIaMedRadio" name="imgSensi" value="medium" checked>M
+          <input type="radio" id="dcmIaHighRadio" name="imgSensi" value="high">H
+          <input type="radio" id="dcmIaVeryHighRadio" name="imgSensi" value="veryhigh">VH
+          <br>
+          Video sensitivity:
+          <input type="radio" id="dcmVaLowRadio" name="vidSensi" value="low">L
+          <input type="radio" id="dcmVaMedRadio" name="vidSensi" value="medium" checked>M
+          <input type="radio" id="dcmVaHighRadio" name="vidSensi" value="high">H
+          <input type="radio" id="dcmVaVeryHighRadio" name="vidSensi" value="veryhigh">VH
+        </div>
+
+        <hr>
+        <button id="logout">Customer Logout</button>
+        <button id="logoutGoogleButton">Switch user</button>
+        <button id="clearLS">Clear local storage</button>
+        <br>
+      </div>
+    </div>
+  </div>
+
+  <div id="trackArea" style="display:none;margin:15px;color:#3B3B3B;"></div>
+</body>
+
+</html>

@@ -1,0 +1,1164 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  box-sizing: border-box;
+  letter-spacing: 0.015em;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: #817F7F;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Roboto', sans-serif;
+  color: #000;
+}
+
+a {
+  text-decoration: none;
+  color: #2C7AD0;
+}
+
+/* Common classes */
+.bold {
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.btn-primary, 
+.btn-secondary {
+  border: none;
+  font-size: 14px;
+  color: #fff;  
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  font-weight: 600;
+  width: 100%;
+  height: 40px;
+  background: #F5C526;
+}
+
+.btn-primary:hover {
+  background-color: #f5bd05;
+}
+
+.btn-secondary {
+  font-weight: 500;
+  font-size: 14px;
+  background-color: #2C7AD0;
+}
+
+.txt-link {
+  font-size: 13px;
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+  color: #000000;
+  cursor: pointer;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 30vh; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background: rgba(88, 89, 89, 0.9);
+}
+
+/* Modal Content */
+.modal-content {
+  width: 98%;
+  min-height: 301px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  margin: auto;
+}
+
+.modal-header {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: #000000;
+  padding: 27px 15px 20px;
+  border-bottom: 1px solid #EBEBEB;
+  position: relative;
+}
+
+
+/* The Close Button */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #000;
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 0 15px;
+}
+
+.modal-body p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0.015em;
+  color: #585959;
+  max-width: 490px;
+  margin: 46px auto 36px;
+}
+
+.modal-btn {
+  min-width: 96px;
+  min-height: 34px;
+  background: #2C7AD0;
+  border-radius: 5px;
+  margin:  auto;
+  font-size: 14px;
+  text-align: center;
+  color: #FFFFFF;
+  display: block;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-body .form-control {
+  border: 1px solid #E4E4E4;
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+/*.select-selected {
+  background-color: DodgerBlue;
+}*/
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  /*border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;*/
+  background-image: url(../images/dropdown.svg);
+  width: 12px;
+  height: 8px;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+/*.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}*/
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.select-items div {
+  font-family: Roboto;
+  font-size: 12px;
+  line-height: 14px;
+  border-radius:  0;
+  border:  none;
+  height: 34px;
+  padding: 9px 18px;
+}
+
+/*style items (options):*/
+.select-items {
+  width: 142px;
+  position: absolute;
+  top: 29px;
+  right: 11px;
+  z-index: 99;
+  border: 1px solid #E9EFF5;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: #2C7AD0;
+  color:  #fff;
+}
+
+/* Checkbox */
+.checkbox {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 12px;
+  color: #000000;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 12px;
+  width: 12px;
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid #817F7F;
+}
+
+/* On mouse-over, add a grey background color */
+/*.checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}*/
+
+/* When the checkbox is checked, add a blue background */
+.checkbox input:checked ~ .checkmark {
+  background-color: #F5C526;
+  border: none;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox .checkmark:after {
+  left: 3px;
+  top: 1px;
+  width: 3px;
+  height: 6px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* Header */
+.header {
+  background-color: #F5C526;
+  padding: 17px 0 0 27px;
+  height: 240px;
+}
+
+.logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.logo-img {
+  width: 32px;
+  height: 32px;
+  margin-right: 2px;
+}
+
+.logo-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.01em;
+  color: #FFFFFF;
+  margin-left: -4px;
+  margin-top: 2px;
+}
+
+/* Home Signin Page */
+.content-bg {
+  position: relative;
+  background: url("../images/content-bg.jpg") left top / cover no-repeat;
+}
+
+.content-bg:before {
+  content: "";
+  background: rgba(245, 245, 245, 0.75);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.full-content {
+  height: 100vh !important;
+}
+
+/*#main {
+  padding: 0 15px;
+}
+*/
+.card {
+  max-width: 856px;
+  width: 100%;
+  min-height: 500px;
+  background: #FFFFFF;
+  border: 1px solid #E9EFF5;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  margin: 0 auto;
+  position: relative;
+  top: -77px;
+  z-index: 1;
+}
+
+.card h2 {
+  font-size: 22px;
+  line-height: 26px;
+  padding:  28px 37px 24px;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.form-signin p {
+  font-size: 13px;
+  text-align: center;
+}
+
+.signin-body {
+  padding: 0 15px;
+}
+
+.signin-group {
+  max-width: 309px;
+  width: 100%;
+  margin:  98px auto 0;
+} 
+
+.signin-input {
+  position: relative;
+  margin-top: 40px;
+}
+
+.signin-input img {
+  position: absolute;
+  top: 7px;
+  left: -36px;
+}
+
+.form-control, .select-selected {
+  display: block;
+  background: #FFFFFF;
+  border: 1px solid #817F7F;
+  border-radius: 5px;
+  padding: 8px 16px;
+  width: 100%;
+  height: 38px;
+  font-size: 14px;
+  color: #817F7F;
+}
+
+#forgotpass {
+  font-size: 12px;
+  color: #2C7AD0;
+  margin: 5px 10px 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 106px;
+}
+
+
+#custSignInButton {
+  margin-top: 58px;
+}
+
+.signin-signup {
+  margin:  54px 0 117px;
+}
+
+.signin-agree { 
+  position: absolute;
+  bottom: 0;
+  left: 0;	
+  width: 100%;	
+  padding: 0 15px 26px;
+  text-align: center;
+}
+
+#signin {
+  margin-top: 82px;
+}
+
+.rememberme-label {
+  float: right;
+  margin-top: 8px;
+}
+
+.rememberme-label:after {
+  content: "";
+  clear: right;
+}
+
+/* Home Welcome Page*/
+.home-welcome {
+  text-align: center;
+  padding-top: 82px;
+}
+
+.home-welcome-logo {
+  position: relative;
+  z-index: 1;
+}
+
+.home-welcome h3 {
+  font-size: 24px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  max-width:  324px;
+  width: 100%;
+  min-height: 299px;
+  /* margin: 79px auto 169px; */
+  margin: 5vh auto 10vh;
+}
+
+.avatar-ellipse,
+.avatar  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.avatar-ellipse {
+  margin-top: -33%;
+  margin-left: -37%;
+  z-index: 0;
+}
+
+.avatar {
+  z-index: 1;
+}
+
+/* Home Block Page */
+.home-block {
+  line-height: 1.7;
+}
+
+/*.home-block .card-body {
+  max-width: 700px;
+}*/
+
+.home-block .column {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 28px;
+  color: #2F2E41;
+  padding: 29px 37px 23px;
+}
+
+.home-block h3 {
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
+  color: #E84650; 
+  margin:  0 0 16px;
+}
+
+.home-block p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #585959;
+}
+
+.home-block .card-body {
+  padding: 28px 37px 34px;
+}
+
+.subtitle {
+  font-family: Roboto;
+  font-weight:500;
+  font-size:16px;
+  line-height:19px;
+  color:#000000;
+}
+
+#website, #category {
+  font-weight:600;
+  font-size:16px;
+}
+
+#website {
+  color:#2C7AD0;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.website-wrap {
+  margin:  23px 0 34px;
+  width: 100%;
+}
+
+#category {
+  color: rgba(0, 0, 0, 0.69);;
+}
+
+.category-wrap {
+ margin:  34px 0 32px;
+}
+
+#unblockformctl {
+  margin:  12px 0 32px;
+  max-width: 227px;
+}
+
+#dynWLform {
+  max-width: 626px;
+  margin-bottom: 30px;
+}
+
+#dynWLform p {
+  margin-bottom: 7px;
+}
+
+#dynWLform .bold {
+  color: #000;
+}
+
+.block-form {
+  width: 100%;
+  background: #FAFAF9;
+  border-radius: 5px;
+  padding: 13px 20px 11px;
+  margin: 12px 0 8px;
+}
+
+#comment {
+  min-height: 98px;
+  border: 1px solid #E9EFF5;
+  resize: none;
+}
+
+/* Reclassification Page*/
+.reclassification .website-wrap {
+  margin: 0 0 20px;
+}
+
+.reclassification .category-wrap {
+  margin: 20px 0 23px;
+}
+
+#text-info,
+#submit-form {
+  max-width: 626px;
+}
+
+#text-info p {
+  margin-bottom: 9px;
+  max-width: 626px;
+}
+
+#submit-form {
+  margin-top: 19px;
+}
+
+#submit-form .custom-select {
+  margin-bottom: 22px;
+}
+
+.submit-btn {
+  width: 103px;
+  height: 32px;
+  background: #F4C524;
+  border-radius: 5px;
+  border: none;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #FFFFFF;
+  float: right;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+#submit-success {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #22C33A;
+  margin:  33px 0 52px;
+}
+
+.reclassification-success img {
+  display: block;
+  margin: 0 auto;
+}
+
+.reclassification-success .signin-agree .signin-agree2 {
+  font-weight: 500;
+  font-size: 13px;
+  color: #817F7F;
+  padding-bottom: 15px;
+}
+
+/* Diag Page */
+.diag-wrapper {
+  width: 337px;
+  min-height: 367px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.diag-header {
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+    padding: 17px 28px 15px;
+    border-bottom: 1px solid #E4E4E4;
+}
+
+.sec-box {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin:  0 0 13px;
+}
+
+.btnwh-1, .btnwh-2 {
+  font-weight: 500;
+  font-size: 14px;
+  color: #FFFFFF;
+  height: 35.06px;
+  background: #2C7AD0;
+  border-radius: 5px;
+  border:  none;
+  margin-bottom: 6px;
+}
+
+.btnwh-1 {
+  width: 155px;
+  margin-right: 4px;
+}
+
+.btnwh-2 {
+  width: 147px;
+}
+
+.tbl {
+    display:table;
+  border: 1px solid #E4E4E4;
+}
+
+.trow {
+  display:table-row;
+}
+
+.tdat {
+  display:table-cell;
+  font-weight: 500;
+  font-size: 14px;
+  color: #000000;
+  border-bottom: 1px solid #E4E4E4;
+}
+
+.tlab {
+  padding: 13px 9px 7px 13px;
+  border-right: 1px solid #E4E4E4;
+}
+
+.tval {
+  font-weight: bold;
+  width: 100%;
+  padding: 13px 7px 7px;
+}
+
+#showDevArea {
+  margin:  22px 0 13px;
+  text-align: center;
+}
+
+#devArea {
+  display: none;
+  background: #F6F6F4;
+}
+
+#devArea label {
+  font-size: 13px;
+  line-height: 150%;
+  color: #000000;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+#devArea input {
+  background-color: transparent;
+  max-width: 213px;
+  height: 29px;
+}
+
+#devArea button, 
+.blue-btn {
+  border:  none;
+  background: #2C7AD0;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #FFFFFF;
+  min-height: 29px;
+}
+
+#turnOnDebugFor {
+  max-width: 279px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-inline {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.form-inline .form-control {
+  margin-right: 6px;
+}
+
+.form-inline .blue-btn {
+  width: 60px;
+}
+
+.hor-line {
+  border-top: 1px solid #817F7F;
+  margin: 20px 0;
+}
+
+#rtcConnect {
+  width: 97px;
+  margin: 3px 0 12px;
+  display: block;
+}
+
+.radio-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+  max-width: 304px;
+  margin: 0 auto 30px;
+}
+
+.radio-group:before {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: #FBD048;
+  display: block;
+}
+
+/* Radio button */
+.radiobtn {
+  display: block;
+  position: relative;
+  padding-top: 23px;
+  margin-bottom: 0 !important;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radiobtn input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.radiodot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 13px;
+  width: 13px;
+  background-color: transparent;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* On mouse-over, add a grey background color */
+.radiobtn:hover input ~ .radiodot {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radiobtn input:checked ~ .radiodot {
+  background: #2C7AD0;
+  box-shadow: 0px 4px 4px #E9EFF5;
+}
+
+/* Create the indicator (the radiodot/circle - hidden when not checked) */
+.radiodot:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (radiodot/circle) when checked */
+.radiobtn input:checked ~ .radiodot:after {
+  display: block;
+}
+
+/* Style the indicator (radiodot/circle) */
+.radiobtn .radiodot:after {
+  top: 0;
+  right: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #2C7AD0;
+}
+
+.radiotxt {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: rgba(129, 127, 127, 0.69);
+}
+
+.radiobtn input:checked ~ .radiotxt {
+  color: #2C7AD0;
+}
+
+.diag-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 5px 5px;
+}
+
+.diag-footer button {
+  height: 35px;
+  background: #2C7AD0;
+  border: none;
+}
+
+.diag-footer button {
+  font-weight: 500;
+  font-size: 14px;
+  color: #FFFFFF;
+  background: #2C7AD0;
+  width: 100%;
+  height: 35px;
+}
+
+.diag-footer button:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-right: 1px;
+}
+
+.diag-footer button:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#reqFun,
+#reasFun,
+#entSupCmd  {
+  min-height: 274px;
+}
+
+#reqFun p {
+  min-height: 64px;
+  margin: 36px auto 41px;
+}
+
+#reasFun p {
+  min-height: 31px;
+  margin:  36px auto 4px;
+}
+
+#reasFun input {
+  max-width: 380px;
+  margin: auto;
+  border: 1px solid #E4E4E4;
+}
+
+#reasFunError {
+	color:red;
+	max-width:380px;
+	margin:auto;
+	display:none;
+}
+
+.cancel-btn {
+  width: 96px;
+  height: 34px;
+  border: 1px solid #817F7F;
+  border-radius: 5px;
+  font-size: 14px;
+  letter-spacing: 0.015em;
+  color: #817F7F;
+  background-color: #fff;
+  margin-right: 10px;
+}
+
+#reasFunBtns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 31px;
+}
+
+#reasFunBtns .modal-btn {
+  margin: 0;
+}
+
+#entSupCmd textarea {
+  min-height: 95px;
+  max-width: 380px;
+  margin: 25px auto 21px;
+  resize: none;
+  font-size: 12px;
+  color: #C4C4C4;
+}
+
+#entSupCmd textarea::-webkit-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:#C4C4C4;
+  opacity: 1; /* Firefox */
+}
+
+#entSupCmd textarea::-moz-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:#C4C4C4;
+  opacity: 1; /* Firefox */
+}
+
+#entSupCmd textarea:-ms-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:#C4C4C4;
+  opacity: 1; /* Firefox */
+}
+
+#entSupCmd textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:#C4C4C4;
+  opacity: 1; /* Firefox */
+}
+
+#entSupCmd textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:#C4C4C4;
+}
+
+#entSupCmd textarea::-ms-input-placeholder { /* Microsoft Edge */
+  color: #C4C4C4;
+}
+
+#entSupCmd button {
+  width: 152px;
+}
+
+/* Copyright */
+.copyright {
+  position: relative;
+bottom: 0;
+width: 100%;
+  z-index: 1;
+  padding: 31px;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 22px;
+  color: rgba(0, 0, 0, 0.69);
+  text-align: center;
+}
+
+.copyright span {
+  font-weight: 600;
+}
+
+#prodArea {
+	padding-top: 16px;
+}
+
+#protectPrivacy {
+	display: none;
+	background-color: #fff;
+	padding: 16px 13px 17px 23px;
+	margin-top: 15px;
+}
+
+#protectPrivacy h3 {
+	font-size: 15px;
+	font-weight: bold;
+	color: #2C7AD0;
+}
+
+#protectPrivacy ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+#protectPrivacy li,
+#protectPrivacy p {
+	font-size: 14px;
+}
+
+#protectPrivacy li {
+	font-weight: 300;
+	margin-bottom: 5px;
+}
+
+#protectPrivacy p {
+	color: #000;
+	margin: 20px 0;
+}
+
+#protectPrivacy p span {
+	font-weight: bold;
+	color: red;
+}
+
+@media (max-width: 480px) {
+  .signin-group {
+      max-width: 250px;
+  }
+}
+
+@media (max-width: 320px) {
+  .signin-group {
+      max-width: 200px;
+  }
+}
+
+
+@media (min-width: 1024px) and (min-height: 700px) {
+  .header {
+    height: 18vh;
+    max-height: 240px;
+  }
+
+  #content {
+    height: 82vh;
+  }
+
+  #signinform {
+    height: 82vh;
+    max-height: 649px;
+  }
+
+  #custSignInButton {
+    margin-top: 7vh;
+  }
+
+  #signin {
+    margin-top: 8vh;
+  }
+
+  .signin-signup {
+    margin-top:  5vh;
+  }
+  .home-welcome {
+    padding-top: 8vh;
+  }
+
+  .home-welcome .signin-agree .signin-agree2 {
+	position: static;
+  } 
+	
+  .signin-agree {
+    position: absolute;
+    bottom: 0;
+    left: 0;  
+    width: 100%;  
+  }
+
+  .avatar-wrapper {
+    margin-bottom: 6vh;
+  }
+}

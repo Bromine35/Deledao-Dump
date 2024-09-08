@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Diag</title>
+
+  <!-- This file is only used by new family version (both mobile and non-mobile) since 11/1/2021 -->
+  <!-- This is only loaded in obfuscated extension builds. It's safe
+       to ignore error in loading this in other builds. -->
+  <script src="/core.min.js"></script>
+
+  <!-- This is only loaded when extension is loaded unpacked from
+       source. It's safe to ignore error in loading this in other builds.
+    -->
+  <script src="/util/vendor.js"></script>
+  <script src="/util/constants.js"></script>
+
+  <!-- This will be the real unobfuscated script when the extension is
+       loaded unpacked during dev. In obfuscated extension builds, it will
+       be the stub script. It's safe to ignore loading error in other
+       builds. -->
+  <script src="../compat/platform.js"></script>
+  <script src="../compat/ext/platform.js"></script>
+  <script src="popupFam.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Roboto:wght@500;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="diag-wrapper">
+        <div id="prodArea">
+            <p id="setuppending" style="display:none">Setting up ...</p>
+
+           <div class="sec-box">
+                <div class="btn-area">
+                    <button id="supportCmdButton" class="btnwh-1">Enter support cmd</button>
+                    <button id="refreshPolicyButton" class="btnwh-2">Refresh Policy</button>
+                  
+                    <button id="homeUserLogout" class="btnwh-1">Log Me Out</button>
+                    <button id="uploadProxyLogButton" class="btnwh-2" style="display:none">Send Debug Info</button>
+
+                    <button id="gendiagButton" class="btnwh-2" style="display:none">Generate Diag Info</button>
+
+                </div>    
+
+                <div class="tbl">
+                    <div id="cust" class="trow">
+                        <div class="tdat tlab">Customer:</div>
+                        <div id="custName" class="tdat tval"></div>
+                    </div>
+                      
+                    <div id="user" class="trow">
+                        <div class="tdat tlab">User:</div>
+                        <div id="userName" class="tdat tval"></div>
+                    </div>
+                      
+                    <div id="brmode" class="trow">
+                        <div class="tdat tlab">Plan:</div>
+                        <div id="homeMode" class="tdat tval"></div>
+                    </div>
+                                            
+                    <div id="rule" class="trow">
+                        <div class="tdat tlab">Rule:</div>
+                        <div id="ruleName" class="tdat tval"></div>
+                    </div>
+                                          
+                    <div class="trow">
+                        <div class="tdat tlab">Version:</div>
+                        <div id="version" class="tdat tval"></div>
+                    </div>
+                   
+                    <div id="ip" style="display:none;" class="trow">
+                        <div class="tdat tlab">IP addr:</div>
+                        <div id="ipAddrs" class="tdat tval"></div>
+                    </div>
+
+                    <div id="video" style="display:none;" class="trow">
+                        <div class="tdat tlab">Video:</div>
+                        <div class="tdat tval"><span id="dvaModel"></span>, <span id="dvaCloud"></span></div>
+                    </div>
+                    
+                    <div id="uuiddiv" style="display:none;" class="trow">
+                        <div class="tdat tlab">UUID:</div>
+                        <div id="uuid" class="tdat tval"></div>
+                    </div>
+                </div>
+           </div><!-- sec-box -->
+
+        </div><!-- prodArea -->
+
+        <div id="devArea">
+            <center class="hidden"><b>Dev Area</b></center>
+            <div id="debugLogArea">
+                <div class="hor-line"></div>
+
+                <div id="turnOnDebugFor" class="sec-box">
+                    <div class="form-group">
+                        <label>Turn on debug for: </label>
+                        <div class="form-inline">
+                            <input type="text" id="debugModules" class="form-control" size="20">
+                            <button id="debugButton" class="blue-btn">Set</button>                    
+                        </div>
+                    </div>
+                    <div style="display: flex;justify-content: space-between;">
+                        <label class="checkbox">
+                            <input type="checkbox" id="logAtRestart" checked="">Log at restart
+                            <div class="checkmark"></div>  
+                        </label>
+                        <div id="showLogsButton" class="txt-link">Show logs</div>
+                    </div>
+                </div>
+
+                <div class="hor-line"></div>
+
+                <div class="sec-box">
+                    <div class="form-group">
+                        <label>Dev server path (e.g. /dev):</label>
+                        <input type="text" id="serverPath" size="10" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Dev console path (e.g. /dev):</label>
+                        <div class="form-inline">
+                            <input type="text" id="serverConsolePath" size="10" class="form-control">
+                            <button id="serverPathButton" class="blue-btn">Set</button>
+                        </div>                    
+                    </div>                    
+                </div>
+
+                <div class="hor-line"></div>
+
+                <div id="sensitivity" class="sec-box">
+                    <label>Text sensitivity:</label>
+                    <div class="radio-group">
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmTaLowRadio" name="textSensi" value="low">
+                            <span class="radiotxt">L</span>
+                            <span class="radiodot"></span>
+                        </label>
+
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmTaMedRadio" name="textSensi" value="medium" checked="">
+                            <span class="radiotxt">M</span>
+                            <span class="radiodot"></span>
+                        </label>
+
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmTaHighRadio" name="textSensi" value="high">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">H</span>
+                        </label>             
+                    </div>
+                  
+           
+                    <label>Image sensitivity:</label>
+                    <div class="radio-group">
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmIaLowRadio" name="imgSensi" value="low">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">L</span>
+                        </label>
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmIaMedRadio" name="imgSensi" value="medium" checked="">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">M</span>
+                        </label>
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmIaHighRadio" name="imgSensi" value="high">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">H</span>
+                        </label>
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmIaVeryHighRadio" name="imgSensi" value="veryhigh">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">VH</span>
+                        </label>                    
+                    </div>
+ 
+                    <label>Video sensitivity: </label>
+                    <div class="radio-group"> 
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmVaLowRadio" name="vidSensi" value="low">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">L</span>
+                        </label>
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmVaMedRadio" name="vidSensi" value="medium" checked="">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">M</span>
+                        </label>
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmVaHighRadio" name="vidSensi" value="high">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">H</span>
+                        </label>
+                        <label class="radiobtn">
+                            <input type="radio" id="dcmVaVeryHighRadio" name="vidSensi" value="veryhigh">
+                            <span class="radiodot"></span>
+                            <span class="radiotxt">VH</span>
+                        </label>
+                    </div>
+                  
+                </div><!-- sensitivity -->
+                
+                <div class="horline"></div>
+
+            </div>
+
+            <div class="diag-footer">
+                <button id="logout" class="btnwh-1">Customer Logout</button>
+                <button id="clearLS" class="btnwh-2">Clear local storage</button>                
+            </div>
+
+        </div><!-- devArea -->  
+
+<!--      <div id="trackArea" style="display:none;margin:15px;color:#3B3B3B;"></div>  -->  
+    <div id="protectPrivacy" style="display:none;margin:15px;color:#3B3B3B;"></div>    
+
+
+    </div><!-- diag-wrapper -->
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+
+      <div id="cmdStatus" class="modal-content" style="display: none">
+        <div class="modal-header">
+            Deladeo Family
+            <span class="modal-close modalClose">×</span>
+        </div>
+        <div class="modal-body">
+            <p id="cmdResp">Support command sent.</p>
+            <button class="modal-btn modalClose">
+                OK
+            </button>                
+        </div>
+      </div>
+
+      <div id="entSupCmd" class="modal-content" style="display: none">
+        <div class="modal-header">
+            Enter Support Cmd
+            <span class="modal-close modalClose">×</span>
+        </div>
+        <div class="modal-body">
+            <textarea id="supportCmd" class="form-control" required=""></textarea>
+            <button id="supCmdSend" type="submit" class="modal-btn">
+                Send Command
+            </button>   
+        </div>
+      </div>      
+    </div>
+
+</body></html>
